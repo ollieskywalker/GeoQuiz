@@ -25,6 +25,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private static final String URL= "https://restcountries.eu/rest/v2/all";
+    private int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private class JSONParser extends AsyncTask<String, Void, String>{
+    private class JSONParser extends AsyncTask<String, Void, String> {
         private static final String TAG = "TAG";
         String countryJSON = "";
 

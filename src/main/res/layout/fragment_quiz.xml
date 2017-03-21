@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.csaper6.educationalquizapp.QuizFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <EditText
+        android:layout_width="123dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_answer_text"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="134dp"
+        android:layout_height="129dp"
+        android:text="Name the country"
+        android:id="@+id/textView_question_text"
+        android:layout_gravity="center" />
+</FrameLayout>
