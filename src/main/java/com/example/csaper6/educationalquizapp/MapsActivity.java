@@ -1,5 +1,6 @@
 package com.example.csaper6.educationalquizapp;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -9,6 +10,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -25,7 +27,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private static final String URL= "https://restcountries.eu/rest/v2/all";
-    private int score = 0;
+    private String CountryKey = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
 
@@ -51,18 +54,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
         JSONParser parser = new JSONParser();
+
+//        try {
+//            GeoJsonLayer layer = new GeoJsonLayer(mMap, R.raw.style,
+//                    getApplicationContext());
+//
+//            layer.addLayerToMap();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
+
+
         parser.execute(URL);
 
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+
+                Intent i = new Intent(MapsActivity.this, QuestionActivity.class);
+                i.putExtra("EXTRA_NAME" , marker.getTitle());
+                startActivity(i);
+
+                return true;
+            }
+        });
 
     }
 
-    private class JSONParser extends AsyncTask<String, Void, String> {
+    private class JSONParser extends AsyncTask<String, Void, String>{
         private static final String TAG = "TAG";
         String countryJSON = "";
 
@@ -101,19 +124,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     JSONArray countriesJSON = new JSONArray(countryJSON);
 
                     for(int i = 0; i < countriesJSON.length(); i++){
-                        Log.d(TAG, "onCreate: " + countriesJSON.optJSONObject(0).optString("name"));
+                        //Log.d(TAG, "onCreate: " + countriesJSON.optJSONObject(0).optString("name"));
 
                         String name = countriesJSON.optJSONObject(i).optString("name");
 
                         double lat = countriesJSON.optJSONObject(i).optJSONArray("latlng").optInt(0);
                         double lon = countriesJSON.optJSONObject(i).optJSONArray("latlng").optInt(1);
 
-                        Log.d("onAsyncClass" , ""+lat+" " + lon);
+                        //Log.d("onAsyncClass" , ""+lat+" " + lon);
 
                         Country x = new Country(lat, lon, name);
 
                         LatLng c = new LatLng(lat, lon);
-                        mMap.addMarker(new MarkerOptions().position(c).title(name));
+
+                        Marker g =  mMap.addMarker(new MarkerOptions().position(c).title(name));
+
 
 //                        LatLng sydney = new LatLng(-34, 151);
 //                        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
