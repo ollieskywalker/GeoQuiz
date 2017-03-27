@@ -7,32 +7,24 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.csaper6.educationalquizapp.MenuActivity">
+    tools:context="com.example.csaper6.educationalquizapp.FinishActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GeoRush"
-        android:textSize="48sp"
-        android:id="@+id/textView"
+        android:id="@+id/textView_gameOver"
+        android:text="Game Over!"
+        android:textSize="36sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
-        android:id="@+id/button_start"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/textView"
+        android:text="Score: "
+        android:textSize="36sp"
+        android:layout_below="@+id/textView_gameOver"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Leaderboards"
-        android:id="@+id/button_leaderboards"
-        android:layout_below="@+id/button_start"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

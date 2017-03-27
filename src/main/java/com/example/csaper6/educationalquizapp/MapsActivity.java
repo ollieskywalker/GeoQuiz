@@ -3,8 +3,10 @@ package com.example.csaper6.educationalquizapp;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -22,12 +24,15 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private static final String URL= "https://restcountries.eu/rest/v2/all";
     private String CountryKey = "";
+    public static int score = 0;
+    public static TextView scoreBoard, timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +43,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-    }
+        scoreBoard = (TextView) findViewById(R.id.textView_score);
+        timer = (TextView) findViewById(R.id.textView_timer);
 
+        new CountDownTimer(10000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                timer.setText(""+String.format("Time: "+"%d:%d",
+                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+            }
+
+            public void onFinish() {
+                Intent i = new Intent(MapsActivity.this, FinishActivity.class);
+                startActivity(i);
+            }
+        }.start();
+
+    }
 
     /**
      * Manipulates the map once available.
@@ -66,8 +88,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-
-
 
         parser.execute(URL);
 

@@ -31,7 +31,7 @@ public class QuestionActivity extends Activity {
         setContentView(R.layout.activity_question);
 
         final EditText answer = (EditText)findViewById(R.id.answer_editText);
-        Button submit = (Button)findViewById(R.id.answer_button);
+        final Button submit = (Button)findViewById(R.id.answer_button);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +40,10 @@ public class QuestionActivity extends Activity {
                 countryName = i.getStringExtra("EXTRA_NAME");
                 
                 if(countryName.equals(answer.getText().toString())){
+                    MapsActivity.score++;
+                    MapsActivity.scoreBoard.setText("Score: " + MapsActivity.score);
                     Toast.makeText(QuestionActivity.this, "Winner!", Toast.LENGTH_SHORT).show();
+                    submit.setEnabled(false);
                 }
                 else {
                     Toast.makeText(QuestionActivity.this, "Loser!", Toast.LENGTH_SHORT).show();
