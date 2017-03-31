@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 Intent i = new Intent();
                 Bundle extras = new Bundle();
-                extras.putString("EXTRA_USERNAME", username.getText().toString());
+                extras.putString("EXTRA_USERNAME", nameSignUp.getText().toString());
                 extras.putString("EXTRA_PASSWORD", password.getText().toString());
                 setResult(Activity.RESULT_OK, i);
                 finish();
@@ -67,7 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void handleFault(BackendlessFault fault) {
-                Toast.makeText(SignUp.this, "" + fault.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, "" + fault.getMessage(), Toast.LENGTH_SHORT).show();
             }
         };
     }

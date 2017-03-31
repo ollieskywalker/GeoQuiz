@@ -57,6 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             public void onFinish() {
                 Intent i = new Intent(MapsActivity.this, FinishActivity.class);
+                i.putExtra("SCORE", score);
                 startActivity(i);
             }
         }.start();

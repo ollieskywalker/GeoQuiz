@@ -24,6 +24,25 @@
         android:text="Score: "
         android:textSize="36sp"
         android:layout_below="@+id/textView_gameOver"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView_FinalScore" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Again"
+        android:id="@+id/button_playgain"
+        android:layout_below="@+id/textView_FinalScore"
+        android:layout_alignEnd="@+id/textView_FinalScore"
+        android:layout_marginTop="74dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leaderboard"
+        android:id="@+id/button_leaderboard"
+        android:layout_marginTop="101dp"
+        android:layout_below="@+id/button_playgain"
         android:layout_centerHorizontal="true" />
 
 

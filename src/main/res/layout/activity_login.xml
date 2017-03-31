@@ -20,14 +20,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Username"
+            android:text="Username/email"
             android:id="@+id/textView_username" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_username"
-            android:text="Username" />
+            android:id="@+id/editText_username" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,8 +45,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_password"
-            android:text="Password" />
+            android:id="@+id/editText_password" />
     </LinearLayout>
 
     <Button
