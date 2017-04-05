@@ -1,35 +1,36 @@
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_question"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.csaper6.educationalquizapp.MapsActivity" />
+        tools:context="com.example.oliverchang.geogusser.MapsActivity"/>
 
     <TextView
-        android:id="@+id/textView_timer"
+        android:id="@+id/textView_countDownTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time: "
-        android:textSize="36sp"
-        android:textColor="#000000"/>
+        android:text="Time Left: "
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Score: "
-        android:textSize="36sp"
-        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
-
-
